@@ -1,0 +1,59 @@
+/* * {
+  padding: 0;
+  margin: 0;
+} */
+
+@import "tailwindcss";
+
+@theme {
+  --background-image-hero: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk26dAV_eJuitNk9f7GmbWe4qbadULPL0jandoB-jbXQ&s=10');
+  --background-image-2: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk26dAV_eJuitNk9f7GmbWe4qbadULPL0jandoB-jbXQ&s=10')
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  gap: 12px;
+  margin: auto;
+  margin-top: 40px;
+  /* color: red; */
+}
+
+.value,
+.clickMe {
+  padding: 10px;
+  border: 2px solid black;
+  text-align: center;
+
+}
+
+.header {
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+.header ul {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+  list-style: none;
+}
+
+
+.header ul li {
+  padding: 4px 8px;
+  border: 2px solid black;
+  border-radius: 7px;
+
+
+}
+
+/* .header ul li{
+  background-color: aqua;
+} */
+
+
+.header ul li:hover {
+  background-color: rgba(0, 255, 255, 0.344);
+}
