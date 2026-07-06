@@ -1,25 +1,49 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../context/UserContext";
 
-function signin({value}) {
+function signin() {
   const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
-  value.setUser={name:name,password:password}
+
+  const users= useContext(UserContext)
+
+
+  const submitHandler = () => {
+    console.log("ctrl in SH");
+    // console.log("before adding user", users);
+    users.setUser({name, password })
+    console.log("After adding user", users.user);
+  };
+
+
   return (
     <>
       <input
         type="text"
         placeholder="Enter your name "
-        onchange={(e) => {
-          setName(e.taget.value);
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
         }}
       />
       <input
         type="password"
         placeholder="Enter strong password"
-        onchange={(e) => {
+        value={password}
+        onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
+      <button
+        className="cursor"
+        style={{ cursor: "pointer" }}
+        onClick={(e) => {
+          e.preventDefault;
+          submitHandler();
+        }}
+      >
+        Submit
+      </button>
     </>
   );
 }
