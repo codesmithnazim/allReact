@@ -1,12 +1,13 @@
+// import React, { Profiler } from "react";
 import UserContextProvider from "./context/UserContextProvider";
-import SignIn from "./components/signin";
-import Profile from "./components/Profile"
+import Profile from "./components/Profile";
+import SignIn from "./components/Profile";
 
 function App() {
   return (
     <UserContextProvider>
-      <SignIn></SignIn>
       <Profile></Profile>
+      <SignIn></SignIn>
     </UserContextProvider>
   );
 }

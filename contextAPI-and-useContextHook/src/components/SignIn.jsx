@@ -1,34 +1,27 @@
-import  { useContext, useState } from "react";
-import UserContext from "../context/UserContext";
+import React, { useState } from "react";
 
-function SignIn() {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const { setUser } = useContext(UserContext);
-  const handleSubmit=()=>{
-        setUser({name, password})
-  }
+function signin({value}) {
+  const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
+  value.setUser={name:name,password:password}
   return (
     <>
       <input
         type="text"
-        value={name}
-        placeholder="Enter your name"
-        onChange={(e) => {
-          setName(e.target.value);
+        placeholder="Enter your name "
+        onchange={(e) => {
+          setName(e.taget.value);
         }}
       />
       <input
         type="password"
-        value={password}
-        placeholder="Enter your password"
-        onChange={(e) => {
+        placeholder="Enter strong password"
+        onchange={(e) => {
           setPassword(e.target.value);
         }}
       />
-      <button onClick={handleSubmit}>submit</button>
     </>
   );
 }
 
-export default SignIn;
+export default signin;
