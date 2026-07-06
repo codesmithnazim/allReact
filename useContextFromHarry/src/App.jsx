@@ -1,36 +1,14 @@
-import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
-import Header from "./components/header.jsx";
-import "./App.css";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [Coolor, setColor] = useState("black");
-  // Only on first render
-  useEffect(() => {
-    return console.log(`yours password are very week`);
-  }, []);
-  // console.log("woww",wow);
-
-  // First render, and whenever the values present in [] changes
-  useEffect(() => {
-    return (
-    console.log("The value of count is changed"))
-  }, [count]);
-
-  useEffect(() => {
-      console.log("The color will be changed to red outside cleanup function");
-    return () => {
-      console.log("The color will be changed to red inside cleanup function");
-      setColor("red");
-    };
-  }, [count]);
+  const [count, setCount] = useState(0)
 
   return (
     <>
-      <Header Color={`${Coolor}`} />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -138,7 +116,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
