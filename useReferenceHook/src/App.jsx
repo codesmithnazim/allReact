@@ -1,11 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useRef, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const b = useRef(0);
+  let a = 0;
+  const btn = useRef(null);
+
+  useEffect(() => {
+    b.current = b.current + 1;
+    console.log("The value of a = ", a);
+    console.log("The value of b = ", b.current);
+    btn.current.style.backgroundColor = "red";
+  }, [count]);
 
   return (
     <>
@@ -24,7 +35,8 @@ function App() {
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          ref={btn}
+          onClick={() => setCount((e) => e + 1)}
         >
           Count is {count}
         </button>
@@ -116,7 +128,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
