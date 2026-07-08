@@ -1,10 +1,54 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { useState, useRef, useEffect } from "react";
+// import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+import { createRoot } from "react-dom/client";
+
+// function App() {
+//   const [inputValue, setInputValue] = useState("");
+//   const [count, setcount] = useState(0);
+//   // const count = useRef(0);
+
+//   useEffect(() => {
+//     // count.current = count.current + 1;
+//     setcount((e) => e + 1);
+//   },[inputValue]);
+
+//   return (
+//     <>
+//       <p>Type in the input field:</p>
+//       <input
+//         type="text"
+//         value={inputValue}
+//         onChange={(e) => setInputValue(e.target.value)}
+//       />
+//       <h1>Render Count: {count}</h1>
+//     </>
+//   );
+// }
+
+// createRoot(document.getElementById("root")).render(<App />);
+
+
+
+function App() {
+  const [inputValue, setInputValue] = useState("");
+  const [previousInputValue, setPreviousInputValue] = useState("");
+
+  useEffect(() => {
+    setPreviousInputValue(inputValue); // "just use state instead of ref"
+  }, [inputValue]);
+
+  return (
+    <>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <h2>Current Value: {inputValue}</h2>
+      <h2>Previous Value: {previousInputValue}</h2>
+    </>
+  );
+}
+
+createRoot(document.getElementById("root")).render(<App />);
