@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  NavLink, Link, useNavigate } from "react-router-dom";
 import { Sun, Moon } from "lucide-react";
 
 function Header(params) {
@@ -8,7 +7,7 @@ function Header(params) {
   return (
     <div
       className={`header flex justify-between items-center gap-2.5 w-full px-12 py-5 ${
-        params.isDark ? "bg-zinc-500" : "bg-cyan-200 text-pink-500"
+        params.isDark ? "bg-zinc-500 text-slate-100" : "bg-cyan-200 text-pink-500"
       }`}
       // NOTE: removed the inline `style` prop that was here — it had a syntax
       // error (`$params.isDark` isn't valid template interpolation, and both
@@ -27,19 +26,19 @@ function Header(params) {
       <div className="logo text-2xl">CodeSmithNazim</div>
 
       <div className="rightContent flex gap-20 text-xl">
-        <Link to="/" className="home">
+        <NavLink to="/" className={(e)=>{return (e.isActive &&  "text-blue-500")}}>
           home
-        </Link>
-        <Link to="/products">products</Link>
-        <Link to="/blogs" className="Blogs">
+        </NavLink>
+        <NavLink className={(e)=>{return (e.isActive &&  "text-blue-500")}} to="/products">products</NavLink>
+        <NavLink className={(e)=>{return (e.isActive &&  "text-blue-500")}} to="/blogs" >
           blogs
-        </Link>
-        <Link to="/about" className="about">
+        </NavLink>
+        <NavLink className={(e)=>{return (e.isActive && "text-blue-500")}} to="/about" >
           about
-        </Link>
-        <Link to="/contact" className="contact">
+        </NavLink>
+        <NavLink className={(e)=>{ return (e.isActive &&  "text-blue-500")}} to="/contact" >
           contact
-        </Link>
+        </NavLink>
       </div>
 
       {/* ---------- Sun / Moon theme toggle ---------- */}

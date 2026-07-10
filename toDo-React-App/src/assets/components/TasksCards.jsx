@@ -1,18 +1,30 @@
 // import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTasks } from "../contexts/TaskContext";
 import UpdateCard from "./updateCard";
 function TasksCards() {
   const { tasks, setTasks } = useTasks();
   const [editid, setEditId] = useState(null);
-  console.log("pinted tasks before entry to HTML", tasks);
+  
+  // setTasks(); Failed attempt to store the data in localstorage.
+  // useEffect(() => {
+  //   let storeTasks= JSON.parse(localStorage.getItem("Todo"))
+  //   console.log("storeTasks", storeTasks)
+  //   setTasks(storeTasks)
+  //   return () => {};
+  // }, [tasks]);
+
+
+  // console.log("pinted tasks before entry to HTML", tasks);
 
   const deleteHandler = (id) => {
-    console.log("The task id", id);
+    // console.log("The task id", id);
     // tasks([...allTasks, allTasks.splice(index,1)])
+
     const tasksArray = [...tasks];
     const updatedTasksArray = tasksArray.toSpliced(id, 1);
     setTasks(updatedTasksArray);
+    // setTasks([...tasks, tasks.toSpliced(id,1)]) Not working, It'll only add
   };
 
   // function updateHandler() {
@@ -22,7 +34,7 @@ function TasksCards() {
     <>
       {editid && (
         <div className="absolute top-0 left-0 w-screen h-screen  backdrop-blur-sm flex justify-center items-center">
-          <UpdateCard id={editid-1} setEditId={setEditId}/>
+          <UpdateCard id={editid - 1} setEditId={setEditId} />
         </div>
       )}
       {tasks.map((task, index) => {
@@ -40,9 +52,9 @@ function TasksCards() {
             <div className="twoButtons flex gap-1 self-end">
               <button
                 className="py-1 px-2 border-2  text-white rounded-md text-center bg-green-500 cursor-pointer"
-           onClick={()=>{
-            setEditId(index+1)
-           }}
+                onClick={() => {
+                  setEditId(index + 1);
+                }}
               >
                 Edit
               </button>

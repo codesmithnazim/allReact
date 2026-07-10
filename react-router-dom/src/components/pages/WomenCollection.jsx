@@ -1,5 +1,3 @@
-// import React from 'react'
-
 function WomenCollection() {
   console.log("Exec ctrl is in Wcollection")
   return (
