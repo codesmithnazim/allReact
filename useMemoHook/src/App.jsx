@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
+import FirstComponent from "./components/FirstComponent"
 
 let a = new Array(9999998).fill(" ").map((element, index) => {
   return {
@@ -16,17 +17,18 @@ let a = new Array(9999998).fill(" ").map((element, index) => {
 function App() {
   const [count, setCount] = useState(0);
   const [num, setNUM] = useState(a);
+  const [memoChecker, setMemoChecker] = useState(10)
 
   // let magical=  num.find((e) => e.isLucky === true ).value
   // let index = useMemo(() => a.find((e) => e.isLucky === true).value, []);
-  let magical = useMemo(() => num.find((e) => e.isLucky === true).value, []);
+  let magical = useMemo(() => num.find((e) => e.isLucky === true).value, [num]);
   console.log(magical)
 
 
   return (
     <>
       <div>{magical}</div>
-
+      <FirstComponent value={memoChecker} />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -45,15 +47,16 @@ function App() {
           onClick={() => {
             setCount((e) => e + 1);
             if (count >= 10 && count<=20) {
-              let length = 9998598 + Math.floor(Math.random()*800);
+              let length = 9998958 + Math.floor(Math.random()*800);
               let bb = new Array(length).fill(" ").map((element, index) => {
                 return {
                   value: index,
-                  isLucky: index === length,
+                  isLucky: index === length-1,
                 };
               });
               console.log("New array length ", bb.length)
               setNUM(bb);
+              setMemoChecker(e=>e+1)
             }
         
           }}
