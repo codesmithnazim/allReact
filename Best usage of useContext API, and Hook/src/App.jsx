@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
-import Header from "./assets/components/Header";
-import ThemeContextProvider from "./assets/contexts/ThemeContextProvider"
+import Header from "./components/Header";
+import ThemeContextProvider from "./contexts/ThemeContextProvider"
 
 function App() {
   return (

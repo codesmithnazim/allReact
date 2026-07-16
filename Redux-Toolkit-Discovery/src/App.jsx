@@ -1,11 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "./redux/features/counterSlice";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const count = useSelector((banana) => banana.mounter.value);
 
   return (
     <>
@@ -21,13 +24,32 @@ function App() {
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+        <div className="control flex justify-center items-center gap-1 ">
+          <div
+            onClick={() => {
+              dispatch(decrement());
+            }}
+          >
+            -
+          </div>
+          <button
+            type="button"
+            className="counter cursor-pointer"
+            onClick={() => {
+              dispatch(increment());
+            }}
+          >
+            {count}
+          </button>
+          <div
+		  className="cursor-pointer"
+            onClick={() => {
+              dispatch(increment());
+            }}
+          >
+            +
+          </div>
+        </div>
       </section>
 
       <div className="ticks"></div>
@@ -116,7 +138,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,11 +1,17 @@
 // import React from "react";
-import { useEffect, useState } from "react";
-import { useTasks } from "../contexts/TaskContext";
+import { useState } from "react";
+import { UseTasks } from "../contexts/TaskContext";
 import UpdateCard from "./updateCard";
+import { Usetheme } from "../contexts/themeContext";
+
 function TasksCards() {
-  const { tasks, setTasks } = useTasks();
+  const { tasks, setTasks } = UseTasks();
   const [editid, setEditId] = useState(null);
-  
+  const { isDark, setIsDark } = Usetheme();
+  console.log(
+    `The value of isDark = ${isDark}, and its controlling function = ${setIsDark}`,
+  );
+
   // setTasks(); Failed attempt to store the data in localstorage.
   // useEffect(() => {
   //   let storeTasks= JSON.parse(localStorage.getItem("Todo"))
@@ -13,7 +19,6 @@ function TasksCards() {
   //   setTasks(storeTasks)
   //   return () => {};
   // }, [tasks]);
-
 
   // console.log("pinted tasks before entry to HTML", tasks);
 
@@ -26,7 +31,8 @@ function TasksCards() {
     setTasks(updatedTasksArray);
     // setTasks([...tasks, tasks.toSpliced(id,1)]) Not working, It'll only add
   };
-
+  
+  { (isDark)? document.querySelector("body").className="dark":document.querySelector("body").className="" } // ctrling the ng of the overall
   // function updateHandler() {
   //   // return <InputCard></InputCard>
   // }
@@ -40,18 +46,18 @@ function TasksCards() {
       {tasks.map((task, index) => {
         return (
           <div
-            className="singleCard flex w-full flex-col gap-1 justify-between items-center border-blue-400 border-2 p-3 rounded"
+            className={`singleCard flex w-full flex-col gap-1 justify-between items-center border-blue-400 border-2 p-3 rounded ${isDark && "border-zinc-200"}`}
             key={index}
           >
             <div className="cardMain w-full">
-              <h3 className="text-xl font-bold font-sans">{task.title}</h3>
-              <div className="description wrap-break-word">
+              <h3 className={`text-xl font-bold font-sans ${isDark && "text-amber-50"}`}>{task.title}</h3>
+              <div className={`description wrap-break-word ${isDark && "text-amber-50"}`}>
                 {task.description}
               </div>
             </div>
             <div className="twoButtons flex gap-1 self-end">
               <button
-                className="py-1 px-2 border-2  text-white rounded-md text-center bg-green-500 cursor-pointer"
+                className={`py-1 px-2 border-2  text-white rounded-md text-center bg-green-500 cursor-pointer  ${isDark && "text-zinc-300"}`}
                 onClick={() => {
                   setEditId(index + 1);
                 }}
@@ -59,7 +65,7 @@ function TasksCards() {
                 Edit
               </button>
               <button
-                className="py-1 px-2 border-2 text-white rounded-md text-center bg-red-500 cursor-pointer "
+                className={`py-1 px-2 border-2 text-white rounded-md text-center bg-red-500 cursor-pointer ${isDark && "text-zinc-300"}`}
                 onClick={() => {
                   deleteHandler(index);
                 }}

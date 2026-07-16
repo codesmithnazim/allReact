@@ -11,7 +11,7 @@ function TaskContext({ children }) {
   );
 }
 
-export function useTasks() {
+export function UseTasks() {
   let context = useContext(Context);
   return context;
 }

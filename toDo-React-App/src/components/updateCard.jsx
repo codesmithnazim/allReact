@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useTasks } from "../contexts/TaskContext";
+import { UseTasks } from "../contexts/TaskContext";
 import { X } from "lucide-react";
+import { Usetheme } from "../contexts/themeContext";
 
 function updateCard({ id, setEditId }) {
-  const { tasks, setTasks } = useTasks();
+  const { tasks, setTasks } = UseTasks();
   const [newTitle, setNewTitle] = useState(tasks[id].title);
   const [newDescp, setNewDescp] = useState(tasks[id].description);
+  const { isDark } = Usetheme();
+
   console.log(
     `All the tasks ${tasks}, and the user wants to edit this ${id} task`,
   );
@@ -25,8 +28,10 @@ function updateCard({ id, setEditId }) {
   }
   return (
     <div className=" flex flex-col gap-3 w-140 border-2 border-blue-400 mt-3 p-4 rounded-md mx-auto">
-      <h1 className="text-2xl font-medium tracking-tight flex justify-between">
-        Update Task{" "}
+      <h1
+        className={`text-2xl font-medium tracking-tight flex justify-between ${isDark && "  text-white"}`}
+      >
+        Update Task
         <X
           color="#c90303"
           className="hover:scale-90 cursor-pointer"
@@ -36,7 +41,7 @@ function updateCard({ id, setEditId }) {
       <input
         type="text"
         placeholder="Enter your task title"
-        className="p-1  border-zinc-600 border-2 rounded text-red-800"
+        className={`p-1  border-zinc-600 border-2 rounded text-red-800 ${isDark && " placeholder:text-zinc-400 text-white"}`}
         value={newTitle}
         onChange={(e) => {
           setNewTitle(e.target.value);
@@ -46,14 +51,14 @@ function updateCard({ id, setEditId }) {
         name="textArea"
         id=""
         placeholder="Describe your task"
-        className="p-1  border-zinc-600 border-2 rounded"
+        className={`p-1  border-zinc-600 border-2 rounded ${isDark && "text-green-50 placeholder:text-green-50"}`}
         value={newDescp}
         onChange={(e) => {
           setNewDescp(e.target.value);
         }}
       ></textarea>
       <button
-        className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 cursor-pointer hover:scale-95"
+        className={`bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 cursor-pointer hover:scale-95 `}
         onClick={() => {
           tasksUpdater();
           removeUpdateCard();
