@@ -1,0 +1,62 @@
+@import "tailwindcss";
+.glassMorphism {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.icons {
+  color: #e2e8f0;
+}
+
+.smallNavbarIcons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-left: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  min-width: 120px;
+  height: 46px;
+  /* background-color: red; */
+  /* overflow: hidden; */
+}
+
+.inputText{
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  outline: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.inputText::placeholder{
+  color: rgba(255, 255, 255, 0.7);
+  
+}
+
+.suggestions{
+  color: rgba(0, 0, 0, 0.807);
+  background-color: white;
+  border-radius: 12px;
+  padding: 4px;
+  padding-left: 8px;
+  width: 100%;
+}
