@@ -4,10 +4,12 @@ import axios from "axios";
 function WeatherForeCastText() {
   const [details, setDetails] = useState({});
   const { city } = UseCityContext();
-  const [AIsumary, setAISumary] = useState({});
+  const [AIsumary, setAISumary] = useState();
+  const [forCastAvailable, setForCastAvailable] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
+      setForCastAvailable(false)
       const { data } = await axios.get(
         `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${city}`,
       );
@@ -53,13 +55,14 @@ function WeatherForeCastText() {
           responce,
         );
         if (responce.ok) {
-          const response = await responce.json();
-          setAISumary(response.aiSummary);
-          console.log("The current summary state data ", AIsumary);
-          console.log("Server repsonce ", response.description);
+          const response = await responce.json(); // responce.json() give us the res.json() portion that are sended by the server in json format.
+          setAISumary(JSON.parse(response.aiSummary));
+          setForCastAvailable(true)   // while JSON.parse() only used to convert back json string into json object
+          console.log("response.json() output = ", aiSummary?.description);
+        } else {
+          let response = await responce.json();
+          console.log("Your responce is not ok and error = ", response.error);
         }
-        else
-          console.log("Your responce is not ok and error = ", responce.error)
       } catch (error) {
         console.log("catch of LOC 49, and the error = ", error);
       }
@@ -69,17 +72,23 @@ function WeatherForeCastText() {
     return () => {};
   }, [city]);
   return (
-    <div className="aboutWeather w-130 border-2 border-blue-700 text-2xl text-white">
-      {AIsumary ? (
+    <div className="aboutWeather flex flex-col gap-6 w-120  text-2xl text-white">
+      {forCastAvailable ? (
         <>
           {console.log("AI summary headline", AIsumary?.headline)}
           {console.log("AI summary description", AIsumary?.description)}
-          <h1 className="text-3xl font-bold">{AIsumary?.headline}</h1>
-          <div className="">{AIsumary?.description}</div>
+          <h1 className="font-display text-3xl font-medium wrap-break-word w-4/6">{AIsumary?.headline}</h1>
+          <div className="font-display text-[1rem] tracking-tight text-zinc-200 leading-normal">{AIsumary?.description}</div>
         </>
       ) : (
-        <div>{"you weather forecast is loading .... "}</div>
+        <div className="font-display text-3xl font-medium wrap-break-word">{"you weather forecast is loading .... "}</div>
       )}
+      {/* <h1 className="">{"Weather Data Unavailable"}</h1>
+      <div className="">
+        {
+          "Current meteorological observations and temperature readings are temporarily unavailable for this area. Wind speeds, humidity levels, and precipitation risks cannot be verified at this time. Please check back shortly for updated forecast information."
+        }
+      </div> */}
     </div>
   );
 }
