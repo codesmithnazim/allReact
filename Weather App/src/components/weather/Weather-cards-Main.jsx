@@ -29,7 +29,7 @@ function WeathercardsMain() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `https://api.weatherapi.com/v1/current.json?key=3b56079a4522479786550155261707&q=${city}`,
+        `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${city}`,
       );
       var { name, country } = data.location;
       var { temp_c } = data.current;
