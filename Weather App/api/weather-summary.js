@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
   // console.log("The newest console.log statement = ", req.body);
-  let { name, country, text, humidity, temp_c, wind_kph, gust_kph } = req.body;
-  console.log("Specs upon which the AI summary will made ", name, country, text, humidity, temp_c, wind_kph, gust_kph )
+  let { name, country, text, humidity, temp_c, wind_kph, gust_kph, cloud, is_day } = req.body;
+  console.log("Specs upon which the AI summary will made ", name, country, text, humidity, temp_c, wind_kph, gust_kph ,cloud, is_day)
   let prompt = `You are a weather reporter writing a short forecast summary for a weather app UI.
 
 Weather data:
@@ -23,13 +23,15 @@ Weather data:
 - Humidity: ${humidity}%
 - Wind speed: ${wind_kph} km/h
 - Wind gusts: ${gust_kph} km/h
+-isDay:${is_day}
+-cloud:${cloud}
 
 Write a response in this exact JSON format, with no markdown, no code fences, and no extra text outside the JSON:
 
 {
   "headline": "A punchy 2-4 word weather headline, e.g. 'Storm with Heavy Rain' or 'Clear and Sunny Skies'",
 
-  "description": "A 3 sentence natural-language forecast description written like a professional broadcast meteorologist, not a data readout. Describe the overall condition and how it feels (e.g., mild, brisk, humid, gusty at times, calm) using descriptive language rather than mechanically restating the exact temperature, humidity percentage, or wind speed figures — those are already displayed elsewhere in the UI, so repeating them verbatim is redundant. You may reference general trends or approximate ranges (e.g., 'winds picking up through the afternoon', 'a slight chance of showers') but avoid quoting the precise input numbers digit-for-digit. Do not repeat the location name."
+  "description": "A 2-3 sentence natural-language forecast description written like a professional broadcast meteorologist, not a data readout. Describe the overall condition and how it feels (e.g., mild, brisk, humid, gusty at times, calm) using descriptive language rather than mechanically restating the exact temperature, humidity percentage, or wind speed figures — those are already displayed elsewhere in the UI, so repeating them verbatim is redundant. You may reference general trends or approximate ranges (e.g., 'winds picking up through the afternoon', 'a slight chance of showers') but avoid quoting the precise input numbers digit-for-digit. Use human understandable easy wording "
 }
 
 Keep the tone calm, factual, and similar to a professional weather app (like Apple Weather or AccuWeather). Avoid exclamation marks or overly casual language.

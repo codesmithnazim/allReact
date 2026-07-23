@@ -8,10 +8,15 @@ import { useNearByCitiescontext } from "../../contexts/nearByContextProvider";
 import { UseCityContext } from "../../contexts/WeatherContextProvider";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { usefullTemperature } from "../../contexts/temperatureContextProvider";
 function WeathercardsMain() {
   const { nearByCities, setNearByCities } = useNearByCitiescontext();
-  const [details, setDetails] = useState({});
-  const { city } = UseCityContext();
+  // const [details, setDetails] = useState({});
+  const { city } = UseCityContext(); //global Conext
+  const { details } = usefullTemperature(); //global context
+  console.log("The current weather details object from weather-Cards-Main component= ", details.name, details.temp_c, details.text)
+
+
   function savedCitiesUpdater(e) {
     if (!nearByCities.includes(city)) {
       let array = [...nearByCities];
@@ -26,36 +31,36 @@ function WeathercardsMain() {
     console.log("Saved cities updated ", nearByCities);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${city}`,
-      );
-      var { name, country } = data.location;
-      var { temp_c } = data.current;
-      var { text } = data.current.condition;
-      var { icon } = data.current.condition;
-      const { wind_kph } = data.current;
-      const { humidity } = data.current;
-      const { gust_kph } = data.current;
-      setDetails({
-        ...details,
-        name,
-        country,
-        temp_c,
-        icon,
-        wind_kph,
-        humidity,
-        gust_kph,
-      });
-      console.log(
-        `city = ${name} country = ${country} temp = ${temp_c} text = ${text} humidity = ${humidity}`,
-      );
-    };
-    fetchData();
-    console.log(`the details array = ${details}`);
-    return () => {};
-  }, [city]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const { data } = await axios.get(
+  //       `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${city}`,
+  //     );
+  //     var { name, country } = data.location;
+  //     var { temp_c } = data.current;
+  //     var { text } = data.current.condition;
+  //     var { icon } = data.current.condition;
+  //     const { wind_kph } = data.current;
+  //     const { humidity } = data.current;
+  //     const { gust_kph } = data.current;
+  //     setDetails({
+  //       ...details,
+  //       name,
+  //       country,
+  //       temp_c,
+  //       icon,
+  //       wind_kph,
+  //       humidity,
+  //       gust_kph,
+  //     });
+  //     console.log(
+  //       `city = ${name} country = ${country} temp = ${temp_c} text = ${text} humidity = ${humidity}`,
+  //     );
+  //   };
+  //   fetchData();
+  //   console.log(`the details array = ${details}`);
+  //   return () => {};
+  // }, [city]);
 
   return (
     <div className="flex flex-col Weather-cards w-65  border-2 border-fuchsia-600 text-2xl text-white absolute mr-5 gap-4.5 right-8 top-43">

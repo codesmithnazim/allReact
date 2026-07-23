@@ -45,7 +45,7 @@ function SuggestionsList({ query }) {
 
   return (
     (
-      <div className="suggestionsList grid grid-rows-1 border-2 border-blue-600 w-50 p-2 gap-y-1 box-border absolute right-39.5 top-17 backdrop-blur-md bg-white/10 text-white/95">
+      <div className="suggestionsList grid grid-rows-1  w-55.5 p-2 gap-y-1 box-border absolute right-39 rounded-2xl top-17 backdrop-blur-md bg-white/10 text-white/95 z-10">
         {suggestions.map((suggestion) => {
           return (
             <div
