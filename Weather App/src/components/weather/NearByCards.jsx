@@ -56,15 +56,15 @@ function NearByCards() {
         return (
           <div
             key={uuidv4()}
-            className="first NearBy glassMorphism p-3 flex flex-col gap-1"
+            className="first NearBy glassMorphism p-3 flex flex-col gap-1  overflow-hidden"
           >
             <div className="country text-sm text-zinc-300">{city.country}</div>
             <div className="weather flex justify-between">
-              <div className="about flex flex-col gap-0.5">
+              <div className="about flex flex-col gap-0.5 w-4/5">
                 <div className="cityName text-sm text-white font-medium font-serif  tracking-wider">
                   {city.name}
                 </div>
-                <div className="status text-sm text-zinc-300">{city.text}</div>
+                <div className="status text-sm text-zinc-300 ">{city.text}</div>
               </div>
               <div className="qunatity flex items-center gap-0.5 text-white font-medium font-serif self-auto ">
                 {city.temp_c}&deg;
@@ -125,3 +125,5 @@ function NearByCards() {
 }
 
 export default NearByCards;
+
+

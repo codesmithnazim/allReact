@@ -58,7 +58,7 @@ function WeatherForeCastText() {
         }
       }
     };
-    fetchData();
+    // fetchData();
 
     return () => {};
   }, [details]);
