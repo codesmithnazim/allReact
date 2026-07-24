@@ -58,13 +58,13 @@ function WeatherForeCastText() {
         }
       }
     };
-    // fetchData();
+    fetchData();
 
     return () => {};
   }, [details]);
 
   return (
-    <div className="aboutWeather flex flex-col gap-3 w-120  text-2xl text-white">
+    <div className="aboutWeather flex flex-col gap-3 w-120  text-2xl text-white z-10">
       {forCastAvailable ? (
         <>
           {/* {console.log("AI summary headline", AIsumary?.headline)}

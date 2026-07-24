@@ -10,7 +10,7 @@ import { SquareChartGantt } from 'lucide-react';
 
 function LeftSideBar() {
   return (
-    <div className="leftSideBar h-21/22 flex flex-col justify-between items-center  px-2 pt-3 pb-10 w-fit glassMorphism absolute -left-24">
+    <div className="leftSideBar h-21/22 flex flex-col justify-between items-center  px-2 pt-3 pb-10 w-fit glassMorphism absolute left-4">
       <div className="logAndNavbar flex flex-col gap-10 items-center">
         <div className="logo">
           <FingerprintPattern

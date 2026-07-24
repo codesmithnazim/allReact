@@ -22,7 +22,7 @@ function Header() {
     console.log(nearByCities);
   }
   return (
-    <div className="header flex justify-between py-1 bg-transparent  border border-red-400">
+    <div className="header flex justify-between py-1 bg-transparent  border border-red-400 z-10">
       <div className="welcome text-zinc-200 text-start">
         Welcome <br /> <strong className="text-zinc-100">Calfin Danang</strong>
       </div>
